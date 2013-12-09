@@ -32,5 +32,5 @@ $module->cron      = 0;
 $module->release = '1.0';
 $module->maturity = MATURITY_STABLE;  // [MATURITY_STABLE | MATURITY_RC | MATURITY_BETA | MATURITY_ALPHA]
 $module->dependencies = array(
-		'block_ecampus_tbird' => 2013112500,
+		'block_ecampus_tbird' => 2013120900,
 );

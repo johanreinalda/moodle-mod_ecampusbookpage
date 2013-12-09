@@ -56,33 +56,40 @@ foreach($booklist as $b) {
 		break;
 	}
 }
-if(!$book) {
-	print_error('module data found, but can not find eCampus book details');
-}
 
 add_to_log($course->id, 'ecampusbookpage', 'view page', 'course='.$course->id.'&amp;isbn='.$bookpage->isbn.'&amp;pagenumber='.$bookpage->pagenumber);
-
-// Update 'viewed' state if required by completion system
-$completion = new completion_info($course);
-$completion->set_module_viewed($cm);
 
 //start html
 $PAGE->set_url('/mod/ecampusbookpage/view.php', array('id' => $id));
 $PAGE->set_title($course->shortname.': '.$bookpage->name);
 $PAGE->set_heading($course->fullname);
 $PAGE->set_activity_record($bookpage);
+
+if(!$book) {
+	// probably because course was restored and now has different or unset eCampus Course ID
+	// or different books assigned! Handle this properly!
+	echo $OUTPUT->header();
+	echo $OUTPUT->heading(format_string($bookpage->name), 2, 'main', 'urlheading');
+	echo $OUTPUT->box_start('mod_introbox', 'urlintro');
+	echo get_string('booknotfound','ecampusbookpage');
+	echo $OUTPUT->box_end();
+	echo $OUTPUT->footer();
+	exit;
+}
+
+// Update 'viewed' state if required by completion system
+// needs to be called before header is printed
+$completion = new completion_info($course);
+$completion->set_module_viewed($cm);
+
 echo $OUTPUT->header();
 echo $OUTPUT->heading(format_string($bookpage->name), 2, 'main', 'urlheading');
-
-//echo 'Book: ' . $bookpage->isbn . '</br>';
-//echo 'Page: ' . $bookpage->pagenumber . '</br>';
 
 //get eCampus access information
 $studentid = get_eCampus_studentid();	// can be email, username or idnumber
 $courseid = get_eCampus_courseid($course->id); // can be idnumber or shortname
 //get the eCampus pass-through temporary access code
 $error;
-$studentid = '1471805'; // some OD student with books
 $accesscode = get_eCampus_accesscode($studentid,&$error);
 
 //and now render the page with the login form
@@ -97,10 +104,9 @@ if($accesscode) {
 	echo get_string('inbook', 'mod_ecampusbookpage') . '&nbsp;&quot;' . $book->title . '&quot;</p>';
 	//render eCampus login form, force submit to go to new window
 	$buttontext = get_string('openpage', 'mod_ecampusbookpage');
-	$isbn = $bookpage->isbn;
-	$isbn = '9780470635292';
-	echo render_eCampus_login($studentid,$accesscode,0,$isbn,$bookpage->pagenumber,$buttontext,$book->secureimage,true,false);
+	echo render_eCampus_login($studentid,$accesscode,$courseid,$bookpage->isbn,$bookpage->pagenumber,$buttontext,$book->secureimage,true,false);
 	add_to_log($course->id, 'ecampusbookpage','login','blocks/ecampus_tbird/README.TXT','eCampus Login');
+
 } else {
 	// unrecoverable errors have occured, change title!
 	echo render_eCampus_error(get_string('erroroccured','block_ecampus_tbird'),$error);

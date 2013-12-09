@@ -40,5 +40,7 @@ $string['clickhereforpage'] = 'Click below to access page';
 $string['inbook'] = 'in';
 $string['openpage'] = 'Open book page';
 $string['isbn'] = 'Select book';
-$string['isbn_help'] = 'Select a book from the list of eCampus registered books for this course.';
-$string['nobooksfound'] = 'We did not find any eCampus books associated with this course.';
+$string['isbn_help'] = 'Select from the list of eCampus books associated with this course.';
+$string['booknotfound'] = '<p>Sorry, we can not find this eCampus book associated with this course!<p>
+	<p>This may be because this course was restored from another course,</br>and therefor the eCampus course id has changed.<p>
+	<p>Please contact your Moodle administrator or eCampus specialist for assistance.</p>';
