@@ -24,23 +24,24 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['modulename'] = 'eCampus Book Page';
-$string['modulename_help'] = 'The eCampus Book Page module enables a teacher to provide a web link to a specific page in an eCampus book.';
+$string['modulename'] = 'eCampus eBook Page';
+$string['modulename_help'] = 'The eCampus Book Page module enables a teacher to provide a web link to a specific page in an eCampus eBook.';
 $string['modulename_link'] = 'mod/ecampusbookpage/view';
-$string['modulenameplural'] = 'eCampus Book Pages';
+$string['modulenameplural'] = 'eCampus eBook Pages';
 $string['pluginname'] = 'eCampus Book Page';
 $string['linkname'] = 'Page link name';
 $string['ecampusbookpage:addinstance'] = 'Add a new eBook URL resource';
 $string['ecampusbookpage:view'] = 'View eBook URL';
 $string['bookheader'] = 'Book Information';
-$string['selectbook'] = 'Select book';
+$string['selectbook'] = 'Select eBook';
 $string['selectpage'] = 'Page number';
-$string['pluginadministration'] = 'eCampus Book Page administration';
+$string['pluginadministration'] = 'eCampus eBook Page administration';
 $string['clickhereforpage'] = 'Click below to access page';
+$string['nobooksfound'] = 'No eCampus eBooks found for this course';
 $string['inbook'] = 'in';
-$string['openpage'] = 'Open book page';
-$string['isbn'] = 'Select book';
-$string['isbn_help'] = 'Select from the list of eCampus books associated with this course.';
-$string['booknotfound'] = '<p>Sorry, we can not find this eCampus book associated with this course!<p>
+$string['openpage'] = 'Open eBook page';
+$string['isbn'] = 'Select eBook';
+$string['isbn_help'] = 'Select from the list of eCampus eBooks associated with this course.';
+$string['booknotfound'] = '<p>Sorry, we can not find an eCampus eBook associated with this course!<p>
 	<p>This may be because this course was restored from another course,</br>and therefor the eCampus course id has changed.<p>
 	<p>Please contact your Moodle administrator or eCampus specialist for assistance.</p>';

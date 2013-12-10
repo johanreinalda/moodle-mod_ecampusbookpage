@@ -74,9 +74,10 @@ class mod_ecampusbookpage_mod_form extends moodleform_mod {
 		
 			$this->add_action_buttons();
 		} else {
-			$mform->addElement('header', 'general', get_string('nobooksfound', 'ecampusbookpage'));
-			$this->standard_coursemodule_elements();
 			
+			$mform->addElement('header', 'general', get_string('nobooksfound', 'ecampusbookpage'));
+			$mform->addElement('static','nobooksdescription','',get_string('booknotfound','ecampusbookpage'));
+			$this->standard_coursemodule_elements();
 		}
 	}
 	
