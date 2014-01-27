@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $module->version   = 2013111100;       // The current module version (Date: YYYYMMDDXX)
-$module->requires  = 2012112900;    // Requires this Moodle version
+$module->requires  = 2013051400;    // Requires this Moodle version
 $module->component = 'mod_ecampusbookpage';        // Full name of the plugin (used for diagnostics)
 $module->cron      = 0;
 $module->release = '1.0';

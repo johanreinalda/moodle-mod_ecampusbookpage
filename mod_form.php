@@ -67,6 +67,7 @@ class mod_ecampusbookpage_mod_form extends moodleform_mod {
 			$mform->addHelpButton('isbn', 'isbn', 'ecampusbookpage');
 			
 			$mform->addElement('text', 'pagenumber', get_string('selectpage', 'ecampusbookpage'), array('size'=>'4'));
+			$mform->setType('pagenumber', PARAM_TEXT);
 			$mform->addRule('pagenumber', null, 'required', null, 'client');
 			//-------------------------------------------------------
 			
