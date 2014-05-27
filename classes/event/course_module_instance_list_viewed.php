@@ -15,22 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Folder module version information
+ * The mod_groupselect course module instance list viewed event.
  *
- * @package    mod
- * @subpackage ecampusbookpage
- * @copyright  2013 onwards Johan Reinalda {@link http://www.thunderbird.edu}
+ * @package    mod_ecampusbookpage
+ * @copyright  2014 Johan Reinalda
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace mod_ecampusbookpage\event;
 defined('MOODLE_INTERNAL') || die();
-
-$module->version   = 2014052100;       // The current module version (Date: YYYYMMDDXX)
-$module->requires  = 2014051200;    // Requires this Moodle version: 2.7
-$module->component = 'mod_ecampusbookpage';        // Full name of the plugin (used for diagnostics)
-$module->cron      = 0;
-$module->release = '1.0';
-$module->maturity = MATURITY_STABLE;  // [MATURITY_STABLE | MATURITY_RC | MATURITY_BETA | MATURITY_ALPHA]
-$module->dependencies = array(
-		'block_ecampus_tbird' => 2014052100,
-);
+class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed {
+}

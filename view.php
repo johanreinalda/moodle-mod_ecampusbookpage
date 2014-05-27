@@ -57,7 +57,13 @@ foreach($booklist as $b) {
 	}
 }
 
-add_to_log($course->id, 'ecampusbookpage', 'view page', 'course='.$course->id.'&amp;isbn='.$bookpage->isbn.'&amp;pagenumber='.$bookpage->pagenumber);
+//add_to_log($course->id, 'ecampusbookpage', 'view page', 'course='.$course->id.'&amp;isbn='.$bookpage->isbn.'&amp;pagenumber='.$bookpage->pagenumber);
+$event = \mod_ecampusbookpage\event\course_module_viewed::create(array(
+        'objectid' => $cm->id,
+        'context' => $context,
+));
+$event->add_record_snapshot('course', $PAGE->course);
+$event->trigger();
 
 //start html
 $PAGE->set_url('/mod/ecampusbookpage/view.php', array('id' => $id));
@@ -90,7 +96,7 @@ $studentid = get_eCampus_studentid();	// can be email, username or idnumber
 $courseid = get_eCampus_courseid($course->id); // can be idnumber or shortname
 //get the eCampus pass-through temporary access code
 $error;
-$accesscode = get_eCampus_accesscode($studentid,&$error);
+$accesscode = get_eCampus_accesscode($studentid,$error);
 
 //and now render the page with the login form
 if($accesscode) {
@@ -110,6 +116,8 @@ if($accesscode) {
 } else {
 	// unrecoverable errors have occured, change title!
 	echo render_eCampus_error(get_string('erroroccured','block_ecampus_tbird'),$error);
-	add_to_log($course->id, 'ecampusbookpage','error','blocks/ecampus_tbird/README.TXT',substr($error,0,200));
+//	add_to_log($course->id, 'ecampusbookpage','error','blocks/ecampus_tbird/README.TXT',substr($error,0,200));
+// YET TO BE RECODED WITH EVENT SYSTEM !!!
+	
 }
 echo $OUTPUT->footer();
